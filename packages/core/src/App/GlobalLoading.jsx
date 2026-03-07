@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './GlobalLoading.module.scss';
 
-// Import your logo - make sure the path is correct
-import LOGO from './Logo/NILOTE.png';
+// Professional green glassmorphic theme
 
 export const GlobalLoading = () => {
     const [progress, setProgress] = useState(0);
@@ -12,23 +11,23 @@ export const GlobalLoading = () => {
 
     // Professional color palette - sophisticated and elegant
     const colors = {
-        primary: '#3B82F6',    // Professional blue
-        secondary: '#8B5CF6',  // Elegant purple
-        accent: '#06D6A0',     // Sophisticated teal
-        gold: '#F59E0B',       // Warm gold
-        silver: '#94A3B8',     // Muted silver
-        dark: '#0F172A',       // Deep navy
-        light: '#F8FAFC',      // Clean white
-        surface: 'rgba(30, 41, 59, 0.4)', // Glass surface
-        gradient1: '#6366F1',  // Indigo
-        gradient2: '#EC4899',  // Pink
+        primary: '#059669',    // Emerald Green
+        secondary: '#10B981',  // Light Green
+        accent: '#34D399',     // Brighter Green
+        gold: '#FCD34D',       // Light gold
+        silver: '#9CA3AF',     // Gray
+        dark: '#064E3B',       // Very dark green
+        light: '#ECFDF5',      // Very light green
+        surface: 'rgba(6, 78, 59, 0.4)', // Green glass surface
+        gradient1: '#047857',  // Dark Emerald
+        gradient2: '#0D9488',  // Teal
         gradient3: '#10B981'   // Emerald
     };
 
     // Professional loading content
     const loadingContent = {
-        partnership: { text: "In partnership with", company: "DERIV", type: "partnership" },
-        powered: { text: "Powered by", company: "DERIV", type: "powered" },
+        partnership: { text: "Welcome to", company: "Mesoflix", type: "partnership" },
+        powered: { text: "Powered by", company: "Advanced Tech", type: "powered" },
         journey: { text: "Simplifying your", highlight: "trading journey", type: "journey" }
     };
 
@@ -37,17 +36,17 @@ export const GlobalLoading = () => {
         const duration = 10000;
         const startTime = Date.now();
         let animationFrame;
-        
+
         const animate = () => {
             const elapsed = Date.now() - startTime;
             const progress = Math.min(elapsed / duration * 100, 100);
-            
+
             // Custom easing function for natural feel
             const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
             const easedProgress = easeOutQuart(progress / 100) * 100;
-            
+
             setProgress(Math.min(easedProgress, 100));
-            
+
             if (progress < 100) {
                 animationFrame = requestAnimationFrame(animate);
             } else {
@@ -55,10 +54,10 @@ export const GlobalLoading = () => {
                 setTimeout(() => setIsComplete(true), 600);
             }
         };
-        
+
         // Start the animation
         animationFrame = requestAnimationFrame(animate);
-        
+
         return () => {
             cancelAnimationFrame(animationFrame);
         };
@@ -67,11 +66,11 @@ export const GlobalLoading = () => {
     // Animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: { 
+        visible: {
             opacity: 1,
             transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
         },
-        exit: { 
+        exit: {
             opacity: 0,
             scale: 0.98,
             transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
@@ -80,10 +79,10 @@ export const GlobalLoading = () => {
 
     const logoVariants = {
         initial: { scale: 0.9, opacity: 0 },
-        animate: { 
+        animate: {
             scale: 1,
             opacity: 1,
-            transition: { 
+            transition: {
                 duration: 0.8,
                 ease: "easeOut"
             }
@@ -118,7 +117,7 @@ export const GlobalLoading = () => {
     return (
         <AnimatePresence>
             {!isComplete && (
-                <motion.div 
+                <motion.div
                     className={styles.globalLoading}
                     style={{
                         '--primary': colors.primary,
@@ -140,7 +139,7 @@ export const GlobalLoading = () => {
                 >
                     {/* Professional background with subtle overlay */}
                     <div className={styles.backgroundOverlay} />
-                    
+
                     {/* Subtle background elements */}
                     <div className={styles.backgroundElements}>
                         <div className={styles.geometricShape1} />
@@ -155,30 +154,37 @@ export const GlobalLoading = () => {
                             variants={logoVariants}
                             initial="initial"
                             animate="animate"
+                            style={{
+                                fontSize: '48px',
+                                fontWeight: '800',
+                                background: 'linear-gradient(45deg, var(--secondary), var(--accent))',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                letterSpacing: '2px',
+                                textShadow: '0 0 20px rgba(16, 185, 129, 0.3)',
+                                marginBottom: '20px',
+                                zIndex: 10
+                            }}
                         >
-                            <img 
-                                src={LOGO} 
-                                alt="Logo" 
-                                className={styles.logo}
-                            />
+                            Mesoflix
                             <div className={styles.logoGlow} />
                         </motion.div>
-                        
+
                         {/* Professional Text Content */}
-                        <motion.div 
+                        <motion.div
                             className={styles.textsContainer}
                             variants={textContainerVariants}
                             initial="hidden"
                             animate="visible"
                         >
                             {/* Partnership Section */}
-                            <motion.div 
+                            <motion.div
                                 className={styles.textSection}
                                 variants={textItemVariants}
                             >
                                 <div className={styles.partnershipContent}>
                                     <span className={styles.prefix}>{loadingContent.partnership.text}</span>
-                                    <motion.span 
+                                    <motion.span
                                         className={styles.companyName}
                                         animate={{
                                             backgroundPosition: ['0%', '100%', '0%'],
@@ -195,13 +201,13 @@ export const GlobalLoading = () => {
                             </motion.div>
 
                             {/* Powered By Section */}
-                            <motion.div 
+                            <motion.div
                                 className={styles.textSection}
                                 variants={textItemVariants}
                             >
                                 <div className={styles.poweredContent}>
                                     <span className={styles.prefix}>{loadingContent.powered.text}</span>
-                                    <motion.span 
+                                    <motion.span
                                         className={styles.techName}
                                         animate={{
                                             opacity: [0.8, 1, 0.8],
@@ -218,13 +224,13 @@ export const GlobalLoading = () => {
                             </motion.div>
 
                             {/* Journey Section */}
-                            <motion.div 
+                            <motion.div
                                 className={styles.textSection}
                                 variants={textItemVariants}
                             >
                                 <div className={styles.journeyContent}>
                                     <span className={styles.journeyText}>{loadingContent.journey.text}</span>
-                                    <motion.span 
+                                    <motion.span
                                         className={styles.highlightText}
                                         animate={{
                                             backgroundPosition: ['0%', '100%', '0%'],
@@ -240,14 +246,14 @@ export const GlobalLoading = () => {
                                 </div>
                             </motion.div>
                         </motion.div>
-                        
+
                         {/* Sophisticated Progress Bar */}
                         <div className={styles.progressContainer}>
                             <div className={styles.progressBar}>
-                                <motion.div 
+                                <motion.div
                                     className={styles.progressFill}
                                     initial={{ width: 0 }}
-                                    animate={{ 
+                                    animate={{
                                         width: `${progressWidth}%`,
                                         transition: {
                                             duration: 0.2,
@@ -258,10 +264,10 @@ export const GlobalLoading = () => {
                                     <div className={styles.progressGlow} />
                                 </motion.div>
                             </div>
-                            <motion.div 
+                            <motion.div
                                 className={styles.progressText}
                                 initial={{ opacity: 0 }}
-                                animate={{ 
+                                animate={{
                                     opacity: 1,
                                     transition: { delay: 0.2 }
                                 }}
@@ -271,7 +277,7 @@ export const GlobalLoading = () => {
                         </div>
 
                         {/* Minimal Loading Indicator */}
-                        <motion.div 
+                        <motion.div
                             className={styles.loadingIndicator}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}

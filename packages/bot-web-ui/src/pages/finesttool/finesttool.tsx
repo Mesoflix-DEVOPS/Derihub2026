@@ -6,7 +6,7 @@ const Finesttool = () => {
         <div className={styles.container}>
             <iframe
                 src="https://kiongozi-ten.vercel.app/"
-                title="Finest Analysis"
+                title="Mesoflix Analysis"
                 className={styles.iframe}
                 allowFullScreen
             />
