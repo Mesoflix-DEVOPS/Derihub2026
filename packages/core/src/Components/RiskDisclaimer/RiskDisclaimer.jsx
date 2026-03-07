@@ -17,7 +17,7 @@ const RiskDisclaimer = () => {
         if (containerRef.current) {
             const containerWidth = containerRef.current.offsetWidth;
             const containerHeight = containerRef.current.offsetHeight;
-            
+
             setPosition({
                 x: (window.innerWidth - containerWidth) / 2,
                 y: (window.innerHeight - containerHeight) / 2
@@ -28,7 +28,7 @@ const RiskDisclaimer = () => {
     const handleMouseDown = (e) => {
         e.preventDefault();
         if (!containerRef.current) return;
-        
+
         const rect = containerRef.current.getBoundingClientRect();
         setDragOffset({
             x: e.clientX - rect.left,
@@ -39,7 +39,7 @@ const RiskDisclaimer = () => {
 
     const handleMouseMove = (e) => {
         if (!isDragging) return;
-        
+
         const newX = e.clientX - dragOffset.x;
         const newY = e.clientY - dragOffset.y;
 
@@ -90,7 +90,7 @@ const RiskDisclaimer = () => {
         >
             <div className="risk-disclaimer__header">
                 <Text size="xxs" weight="bold">
-                    <Localize i18n_default_text="Risk Disclaimer" />
+                    <Localize i18n_default_text="Mesoflix Advisor" />
                 </Text>
                 <div className="risk-disclaimer__drag-handle">
                     <svg width="8" height="8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,25 +108,22 @@ const RiskDisclaimer = () => {
                 <div className="risk-disclaimer__content">
                     <div className="risk-disclaimer__content-inner">
                         <Text align='left' className='risk-disclaimer__text' size={isMobile ? 'xxs' : 'xs'}>
-                            <Localize i18n_default_text='Deriv offers complex derivatives, such as options and contracts for difference ("CFDs"). These products may not be suitable for all clients, and trading them puts you at risk.' />
-                        </Text>
-                        <Text align='left' className='risk-disclaimer__text risk-disclaimer__text--important' size={isMobile ? 'xxs' : 'xs'}>
-                            <Localize i18n_default_text='Please make sure that you understand the following risks before trading Deriv products:' />
+                            <Localize i18n_default_text='Mesoflix provides advanced automation tools. Ensure you understand the strategies you are deploying before activating them.' />
                         </Text>
                         <ul className="risk-disclaimer__list">
                             <li className="risk-disclaimer__list-item">
                                 <Text align='left' className='risk-disclaimer__text' size={isMobile ? 'xxs' : 'xs'}>
-                                    <Localize i18n_default_text='You may lose some or all of the money you invest in the trade' />
+                                    <Localize i18n_default_text='Always test your bots in a Demo account first' />
                                 </Text>
                             </li>
                             <li className="risk-disclaimer__list-item">
                                 <Text align='left' className='risk-disclaimer__text' size={isMobile ? 'xxs' : 'xs'}>
-                                    <Localize i18n_default_text='If your trade involves currency conversion, exchange rates will affect your profit and loss' />
+                                    <Localize i18n_default_text='Monitor ongoing market conditions proactively' />
                                 </Text>
                             </li>
                         </ul>
                         <Text align='left' className='risk-disclaimer__text risk-disclaimer__text--warning' size={isMobile ? 'xxs' : 'xs'}>
-                            <Localize i18n_default_text='You should never trade with borrowed money or with money that you cannot afford to lose.' />
+                            <Localize i18n_default_text='Trade responsibly. Manage your risk settings properly to avoid excessive drawdowns.' />
                         </Text>
                     </div>
                     <div className="risk-disclaimer__close" onClick={(e) => {

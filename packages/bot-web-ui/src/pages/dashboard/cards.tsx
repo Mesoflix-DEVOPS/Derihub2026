@@ -127,8 +127,17 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies, children }: TCard
                                 }
                             }}
                             tabIndex={0}
+                            style={{
+                                background: 'rgba(218, 165, 32, 0.12)',
+                                backdropFilter: 'blur(10px)',
+                                WebkitBackdropFilter: 'blur(10px)',
+                                border: '1px solid rgba(218, 165, 32, 0.4)',
+                                boxShadow: '0 8px 32px rgba(218, 165, 32, 0.15)',
+                                borderRadius: '16px',
+                                transition: 'all 0.3s ease'
+                            }}
                         >
-                            <div className='dashboard-card__icon'>
+                            <div className='dashboard-card__icon' style={{ filter: 'drop-shadow(0 0 8px rgba(218, 165, 32, 0.6))' }}>
                                 <Icon
                                     icon={action.icon}
                                     width={is_mobile ? '32' : '40'}
