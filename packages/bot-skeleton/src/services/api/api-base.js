@@ -45,6 +45,16 @@ class APIBase {
         if (window) {
             window.addEventListener('online', this.reconnectIfNotConnected);
             window.addEventListener('focus', this.reconnectIfNotConnected);
+
+            // Re-authorize with the correct account when user switches demo/real.
+            // Deriv updates `active_loginid` in localStorage whenever account changes.
+            window.addEventListener('storage', (event) => {
+                if (event.key === 'active_loginid' && event.newValue && event.newValue !== this.account_id) {
+                    // eslint-disable-next-line no-console
+                    console.log(`[APIBase] Account switched to ${event.newValue} — re-initializing API.`);
+                    this.createNewInstance(event.newValue);
+                }
+            });
         }
     }
 
