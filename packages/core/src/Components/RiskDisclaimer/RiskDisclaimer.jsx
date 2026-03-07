@@ -13,14 +13,13 @@ const RiskDisclaimer = () => {
     const containerRef = useRef(null);
 
     useEffect(() => {
-        // Center the disclaimer on first render
+        // Center the disclaimer horizontally, but pin it to the top on first render
         if (containerRef.current) {
             const containerWidth = containerRef.current.offsetWidth;
-            const containerHeight = containerRef.current.offsetHeight;
 
             setPosition({
                 x: (window.innerWidth - containerWidth) / 2,
-                y: (window.innerHeight - containerHeight) / 2
+                y: 80 // Position it beautifully below the header
             });
         }
     }, []);
@@ -80,7 +79,8 @@ const RiskDisclaimer = () => {
             ref={containerRef}
             className={`risk-disclaimer ${isDragging ? 'risk-disclaimer--dragging' : ''} ${isExpanded ? 'risk-disclaimer--expanded' : ''}`}
             style={{
-                transform: `translate(${position.x}px, ${position.y}px)`,
+                top: `${position.y}px`,
+                left: `${position.x}px`,
                 transition: isDragging ? 'none' : 'all 0.3s ease',
                 width: isExpanded ? '320px' : '200px',
                 minHeight: isExpanded ? 'auto' : '40px'

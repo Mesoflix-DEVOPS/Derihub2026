@@ -9,6 +9,44 @@ import { rudderStackSendOpenEvent } from '../../analytics/rudderstack-common-eve
 import { rudderStackSendDashboardClickEvent } from '../../analytics/rudderstack-dashboard';
 import DashboardBotList from './bot-list/dashboard-bot-list';
 
+const SvgMyComputer = ({ width, height }: { width: string | number; height: string | number }) => (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6C4 4.89543 4.89543 4 6 4H18C19.1046 4 20 4.89543 20 6V15C20 16.1046 19.1046 17 18 17H6C4.89543 17 4 16.1046 4 15V6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 17V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8 20H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+const SvgGoogleDrive = ({ width, height }: { width: string | number; height: string | number }) => (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 15L15 21H9L12.5 15H18.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M9 21L3 10.5L6 5M12.5 15L6 5H12L18.5 15M21 15L15 4.5L12 9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+const SvgBotBuilder = ({ width, height }: { width: string | number; height: string | number }) => (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="11" width="18" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
+        <circle cx="12" cy="5" r="2" stroke="currentColor" strokeWidth="2" />
+        <path d="M12 7V11" stroke="currentColor" strokeWidth="2" />
+        <path d="M8 16H8.01" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+        <path d="M16 16H16.01" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+);
+
+const SvgQuickStrategy = ({ width, height }: { width: string | number; height: string | number }) => (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+const customIcons: Record<string, React.FC<{ width: string | number; height: string | number }>> = {
+    'my-computer': SvgMyComputer,
+    'google-drive': SvgGoogleDrive,
+    'bot-builder': SvgBotBuilder,
+    'quick-strategy': SvgQuickStrategy,
+};
+
 type TCardProps = {
     has_dashboard_strategies: boolean;
     is_mobile: boolean;
@@ -117,7 +155,7 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies, children }: TCard
                     {actions.map((action) => (
                         <div
                             key={action.type}
-                            className={classNames('dashboard-card', {
+                            className={classNames('dashboard-card dashboard-card--golden', {
                                 'dashboard-card--minimized': has_dashboard_strategies && is_mobile,
                             })}
                             onClick={action.callback}
@@ -127,22 +165,13 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies, children }: TCard
                                 }
                             }}
                             tabIndex={0}
-                            style={{
-                                background: 'rgba(218, 165, 32, 0.12)',
-                                backdropFilter: 'blur(10px)',
-                                WebkitBackdropFilter: 'blur(10px)',
-                                border: '1px solid rgba(218, 165, 32, 0.4)',
-                                boxShadow: '0 8px 32px rgba(218, 165, 32, 0.15)',
-                                borderRadius: '16px',
-                                transition: 'all 0.3s ease'
-                            }}
                         >
-                            <div className='dashboard-card__icon' style={{ filter: 'drop-shadow(0 0 8px rgba(218, 165, 32, 0.6))' }}>
-                                <Icon
-                                    icon={action.icon}
-                                    width={is_mobile ? '32' : '40'}
-                                    height={is_mobile ? '32' : '40'}
-                                />
+                            <div className='dashboard-card__icon'>
+                                {(() => {
+                                    const CustomIcon = customIcons[action.type];
+                                    if (CustomIcon) return <CustomIcon width={is_mobile ? '32' : '40'} height={is_mobile ? '32' : '40'} />;
+                                    return <Icon icon={action.icon} width={is_mobile ? '32' : '40'} height={is_mobile ? '32' : '40'} />;
+                                })()}
                             </div>
                             <div className='dashboard-card__content'>
                                 <Text
