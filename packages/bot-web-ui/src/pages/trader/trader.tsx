@@ -163,6 +163,6 @@ const DTraderAutoLogin = observer(({
             />
         </div>
     );
-};
+});
 
 export default DTraderAutoLogin;
