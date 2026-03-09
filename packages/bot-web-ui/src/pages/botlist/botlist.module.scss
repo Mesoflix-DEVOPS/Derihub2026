@@ -31,7 +31,7 @@
     --border-radius-lg: 24px;
 
     position: relative;
-    min-height: 100vh;
+    height: 100%;
     width: 100%;
     background: #f8fafc;
     /* Slate-50 */
@@ -41,8 +41,8 @@
     padding: 2rem;
 
     @media (max-width: 768px) {
-        padding: 1rem;
-        height: 70vh;
+        padding: 0.5rem 1rem;
+        height: 100%;
 
         .header {
             flex-direction: column;
@@ -163,21 +163,21 @@
         z-index: 2;
         max-width: 1400px;
         margin: 0 auto;
-        padding: 2rem;
-        min-height: 100vh;
+        padding: 0 2rem;
+        height: 100%;
         display: flex;
         flex-direction: column;
     }
 
     .header {
-        margin-bottom: 2.5rem;
+        margin-bottom: 1rem;
         display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
+        justify-content: flex-start;
+        align-items: center;
         flex-wrap: wrap;
-        gap: 2rem;
-        padding: 2rem 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
         @media (max-width: 768px) {
             flex-direction: column;
@@ -405,7 +405,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 2rem;
-        padding: 2rem 0 5rem;
+        padding: 0.5rem 0 5rem;
         align-items: start;
         flex: 1;
         width: 100%;
@@ -438,7 +438,6 @@
 
         @media (max-width: 768px) {
             grid-template-columns: 1fr;
-            max-height: calc(100vh - 180px);
         }
     }
 

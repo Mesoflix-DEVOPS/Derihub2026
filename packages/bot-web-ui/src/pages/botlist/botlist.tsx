@@ -54,23 +54,6 @@ const DashboardBotList = observer(() => {
 
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <div
-                        className={styles.titleContainer}
-                        onMouseEnter={() => setIsHoveringTitle(true)}
-                        onMouseLeave={() => setIsHoveringTitle(false)}
-                    >
-                        <h1 className={styles.title}>
-                            <span className={`${styles.titleText} ${isHoveringTitle ? styles.titleHover : ''}`}>
-                                <Localize i18n_default_text="Free Bots" />
-                            </span>
-                            <span className={`${styles.emoji} ${isHoveringTitle ? styles.emojiHover : ''}`}>
-                                ⚡
-                            </span>
-                        </h1>
-                        <p className={styles.subtitle}>
-                            <Localize i18n_default_text="Premium automated trading strategies — load and deploy instantly" />
-                        </p>
-                    </div>
 
                     <div className={styles.searchContainer}>
                         <div className={styles.searchInputWrapper}>

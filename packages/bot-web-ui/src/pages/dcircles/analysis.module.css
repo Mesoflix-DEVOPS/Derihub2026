@@ -40,7 +40,7 @@
     --transition-normal: 250ms ease-in-out;
     --transition-slow: 400ms ease-in-out;
 
-    min-height: 100vh;
+    height: 100%;
     background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.1), transparent 70%),
         radial-gradient(ellipse at bottom, rgba(139, 92, 246, 0.1), transparent 70%), var(--bg-primary);
     display: flex;
