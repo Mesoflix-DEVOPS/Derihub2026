@@ -67,7 +67,7 @@ const QuickStrategy = observer(() => {
 
                     // Update Rise/Fall stats
                     if (prevQuoteRef.current !== null) {
-                        setRiseFallStats(prev => ({
+                        setRiseFallStats((prev: { rise: number, fall: number }) => ({
                             rise: quote > prevQuoteRef.current! ? prev.rise + 1 : prev.rise,
                             fall: quote < prevQuoteRef.current! ? prev.fall + 1 : prev.fall,
                         }));
@@ -173,11 +173,14 @@ const QuickStrategy = observer(() => {
                 ))}
             </div>
 
-            <AnalysisHeader digit_counts={digitCounts} last_digit={lastDigit} />
+            {/* Shared Digit Analysis Header */}
+            {(activeTab === 'Over/Under' || activeTab === 'Matches/Differs') && (
+                <AnalysisHeader digit_counts={digitCounts} last_digit={lastDigit} />
+            )}
 
             <div className="qs-analysis-row">
-                <EvenOddAnalysis digit_counts={digitCounts} />
-                <RiseFallAnalysis rise_fall_stats={riseFallStats} />
+                {activeTab === 'Even/Odd' && <EvenOddAnalysis digit_counts={digitCounts} />}
+                {activeTab === 'Rise/Fall' && <RiseFallAnalysis rise_fall_stats={riseFallStats} />}
             </div>
 
             <div className="qs-main-content">
