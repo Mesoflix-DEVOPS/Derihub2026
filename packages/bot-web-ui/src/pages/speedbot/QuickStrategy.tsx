@@ -56,7 +56,98 @@ const QuickStrategy = observer(() => {
     const subscriptionId = useRef<string | null>(null);
     const lastTickRef = useRef<any>(null);
 
-    // ... (fetchSymbols, requestTickHistory, useEffects remain same)
+    const fetchSymbols = useCallback(async () => {
+        try {
+            const response = await api_base.api.send({ active_symbols: 'brief', product_type: 'basic' });
+            if (response.active_symbols) {
+                setSymbolsList(response.active_symbols);
+                const grouped: GroupedSymbols = { volatility: [], jump: [], other: [] };
+                response.active_symbols.forEach((s: any) => {
+                    if (s.submarket === 'random_index' || s.submarket === 'volidx') grouped.volatility.push(s);
+                    else if (s.submarket === 'random_daily') grouped.jump.push(s);
+                    else grouped.other.push(s);
+                });
+                setGroupedSymbols(grouped);
+            }
+        } catch (err) {
+            console.error('Fetch symbols failed:', err);
+        }
+    }, []);
+
+    const requestTickHistory = useCallback(async (symbol: string) => {
+        if (subscriptionId.current) {
+            try { await api_base.api.send({ forget: subscriptionId.current }); } catch (e) { }
+            subscriptionId.current = null;
+        }
+
+        try {
+            const response = await api_base.api.send({
+                ticks_history: symbol,
+                subscribe: 1,
+                end: 'latest',
+                count: 50,
+                adjust_start_time: 1,
+            });
+
+            if (response.subscription) {
+                subscriptionId.current = response.subscription.id;
+            }
+            if (response.history) {
+                setTickHistory(response.history.prices.map((p: any, i: number) => ({
+                    price: p,
+                    epoch: response.history.times[i]
+                })));
+            }
+        } catch (err) {
+            console.error('Tick history failed:', err);
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchSymbols();
+    }, [fetchSymbols]);
+
+    useEffect(() => {
+        if (selectedMarket) {
+            requestTickHistory(selectedMarket);
+        }
+        return () => {
+            if (subscriptionId.current) {
+                api_base.api.send({ forget: subscriptionId.current }).catch(() => { });
+            }
+        };
+    }, [selectedMarket, requestTickHistory]);
+
+    useEffect(() => {
+        const tickHandler = (data: any) => {
+            if (data?.msg_type === 'tick' && data?.tick?.symbol === selectedMarket) {
+                const tick = data.tick;
+                const newPrice = Number(tick.quote);
+                setCurrentPrice(newPrice);
+                setPipSize(tick.pip_size || 2);
+
+                const quoteStr = tick.quote.toString();
+                const lastDigit = Number(quoteStr.charAt(quoteStr.length - 1));
+                setLastDigit(lastDigit);
+
+                setDigitCounts(prev => {
+                    const next = [...prev];
+                    next[lastDigit]++;
+                    return next;
+                });
+
+                if (lastTickRef.current) {
+                    const prevPrice = Number(lastTickRef.current.quote);
+                    if (newPrice > prevPrice) setRiseFallStats(p => ({ ...p, rise: p.rise + 1 }));
+                    else if (newPrice < prevPrice) setRiseFallStats(p => ({ ...p, fall: p.fall + 1 }));
+                }
+                lastTickRef.current = tick;
+            }
+        };
+
+        globalObserver.register('api.tick', tickHandler);
+        return () => globalObserver.unregister('api.tick', tickHandler);
+    }, [selectedMarket]);
 
     const handleMarketChange = (newSymbol: string) => {
         setSelectedMarket(newSymbol);

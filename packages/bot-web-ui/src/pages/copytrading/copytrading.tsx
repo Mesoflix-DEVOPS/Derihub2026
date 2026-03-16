@@ -3,6 +3,7 @@ import { FaYoutube, FaCog, FaChartLine, FaShieldAlt } from 'react-icons/fa';
 import { useStore } from '@deriv/stores';
 import { copy_trading_logic } from './CopyTradingLogic';
 import { observer } from 'mobx-react-lite';
+import { botNotification } from 'Components/bot-notification/bot-notification';
 
 const TokenManager: React.FC = observer(() => {
     const { client } = useStore();

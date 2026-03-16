@@ -17,10 +17,12 @@ const useTradeActivity = (onTargetMet: (type: 'TP' | 'SL', profit: number) => vo
             (profit: number) => {
                 if (profit === undefined || profit === null) return;
 
-                // Logic to check against active plans
-                if (profit >= 10) {
+                const tp_limit = Number(localStorage.getItem('qs_daily_tp')) || 10;
+                const sl_limit = Number(localStorage.getItem('qs_daily_sl')) || 5;
+
+                if (profit >= tp_limit) {
                     onTargetMet('TP', profit);
-                } else if (profit <= -5) {
+                } else if (profit <= -sl_limit) {
                     onTargetMet('SL', profit);
                 }
             }
@@ -36,6 +38,9 @@ const RiskManager: React.FC = observer(() => {
     const [isCalculated, setIsCalculated] = useState(false);
     const [plans, setPlans] = useState<any[]>([]);
     const [notification, setNotification] = useState<{ type: 'TP' | 'SL'; profit: number } | null>(null);
+    const [dailyProfitLimit, setDailyProfitLimit] = useState<string>('10');
+    const [dailyStopLoss, setDailyStopLoss] = useState<string>('5');
+    const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
 
     // Load plans from local storage
     useEffect(() => {
@@ -56,6 +61,11 @@ const RiskManager: React.FC = observer(() => {
         setNotification({ type, profit });
         setTimeout(() => setNotification(null), 5000);
     });
+
+    useEffect(() => {
+        localStorage.setItem('qs_daily_tp', dailyProfitLimit);
+        localStorage.setItem('qs_daily_sl', dailyStopLoss);
+    }, [dailyProfitLimit, dailyStopLoss]);
 
     const appendNumber = (num: string) => {
         if (num === '.' && capital.includes('.')) return;
@@ -161,6 +171,31 @@ const RiskManager: React.FC = observer(() => {
 
                         <div className="resultsSection">
                             <h3 style={{ marginBottom: '20px' }}>Strategy Recommendation</h3>
+
+                            <div className="dailySettings" style={{ marginBottom: '20px', padding: '15px', background: 'rgba(255,255,255,0.03)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                                <div style={{ fontSize: '13px', color: '#94a3b8', marginBottom: '10px', fontWeight: 'bold' }}>DAILY ANNOUNCEMENT LIMITS</div>
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+                                    <div>
+                                        <label style={{ fontSize: '11px', color: '#64748b', display: 'block', marginBottom: '4px' }}>PROFIT ($)</label>
+                                        <input
+                                            type="number"
+                                            value={dailyProfitLimit}
+                                            onChange={(e) => setDailyProfitLimit(e.target.value)}
+                                            style={{ width: '100%', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', padding: '8px', borderRadius: '6px', color: '#4ade80', fontSize: '14px', fontWeight: 'bold' }}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label style={{ fontSize: '11px', color: '#64748b', display: 'block', marginBottom: '4px' }}>STOP LOSS ($)</label>
+                                        <input
+                                            type="number"
+                                            value={dailyStopLoss}
+                                            onChange={(e) => setDailyStopLoss(e.target.value)}
+                                            style={{ width: '100%', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', padding: '8px', borderRadius: '6px', color: '#f87171', fontSize: '14px', fontWeight: 'bold' }}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
                             <div className="resultsGrid">
                                 <div className="resultItem" style={{ background: 'rgba(56, 189, 248, 0.1)', borderLeft: '4px solid #38bdf8' }}>
                                     <span className="label">Safe Stake</span>
@@ -220,29 +255,75 @@ const RiskManager: React.FC = observer(() => {
                                     <p>Your trading journal is empty. Create a plan to start tracking.</p>
                                 </div>
                             ) : (
-                                plans.map(plan => (
-                                    <div key={plan.id} className="planCard">
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                            <span style={{ fontWeight: '700' }}>{plan.name}</span>
-                                            <FaTrash
-                                                style={{ cursor: 'pointer', color: '#f87171', opacity: 0.6 }}
-                                                onClick={() => setPlans(plans.filter(p => p.id !== plan.id))}
-                                            />
+                                plans.map(plan => {
+                                    const is_selected = selectedPlanId === plan.id;
+                                    return (
+                                        <div key={plan.id} className={`planCard ${is_selected ? 'selected' : ''}`} onClick={() => setSelectedPlanId(is_selected ? null : plan.id)}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                                                <span style={{ fontWeight: '700' }}>{plan.name}</span>
+                                                <FaTrash
+                                                    style={{ cursor: 'pointer', color: '#f87171', opacity: 0.6 }}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setPlans(plans.filter(p => p.id !== plan.id));
+                                                        if (is_selected) setSelectedPlanId(null);
+                                                    }}
+                                                />
+                                            </div>
+                                            <div style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '12px' }}>
+                                                Capital: ${plan.capital} | Goal: +{plan.target}%
+                                            </div>
+                                            <div style={{ height: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', overflow: 'hidden', marginBottom: '16px' }}>
+                                                <div style={{ width: `${plan.progress}%`, height: '100%', background: '#38bdf8' }}></div>
+                                            </div>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <span className="status" style={{ background: 'rgba(74, 222, 128, 0.1)', color: '#4ade80' }}>
+                                                    {plan.status}
+                                                </span>
+                                                <span style={{ fontSize: '13px', fontWeight: '600' }}>{plan.progress}%</span>
+                                            </div>
+
+                                            {is_selected && (
+                                                <div className="planDetails" style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                                                    <div style={{ fontSize: '13px', color: '#4ade80', marginBottom: '15px', fontWeight: 'bold' }}>PERSONAL ASSISTANT ANALYSIS</div>
+
+                                                    <div className="sessionBreakdown" style={{ background: 'rgba(0,0,0,0.2)', padding: '12px', borderRadius: '8px', marginBottom: '15px' }}>
+                                                        <div style={{ fontSize: '11px', color: '#94a3b8', marginBottom: '8px' }}>OPTIMIZED SESSION PLAN (3 SESSIONS/DAY)</div>
+                                                        <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
+                                                            {[1, 2, 3].map(s => (
+                                                                <div key={s} style={{ flex: 1, textAlign: 'center', padding: '8px', background: 'rgba(56, 189, 248, 0.1)', borderRadius: '6px', border: '1px solid rgba(56, 189, 248, 0.2)' }}>
+                                                                    <div style={{ fontSize: '10px', color: '#38bdf8' }}>SES {s}</div>
+                                                                    <div style={{ fontSize: '12px', fontWeight: 'bold' }}>${(Number(plan.capital) * (Number(plan.target) / 100) / 3).toFixed(2)}</div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                        <p style={{ fontSize: '11px', color: '#64748b', lineHeight: '1.4' }}>
+                                                            To reach your <strong>{plan.target}%</strong> goal safely, divide your target into <strong>3 sessions</strong>.
+                                                            Each session should aim for <strong>${(Number(plan.capital) * (Number(plan.target) / 100) / 3).toFixed(2)}</strong> profit.
+                                                        </p>
+                                                    </div>
+
+                                                    <div style={{ marginBottom: '15px' }}>
+                                                        <div style={{ fontSize: '11px', color: '#94a3b8', marginBottom: '4px' }}>BALANCE IMPACT</div>
+                                                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
+                                                            <span>Target Amount:</span>
+                                                            <span style={{ color: '#4ade80', fontWeight: 'bold' }}>+${(Number(plan.capital) * (Number(plan.target) / 100)).toFixed(2)}</span>
+                                                        </div>
+                                                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
+                                                            <span>Final Balance:</span>
+                                                            <span style={{ fontWeight: 'bold' }}>${(Number(plan.capital) * (1 + Number(plan.target) / 100)).toFixed(2)}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div style={{ padding: '10px', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '6px', fontSize: '11px', color: '#94a3b8' }}>
+                                                        <FaShieldAlt style={{ marginRight: '6px', color: '#f59e0b' }} />
+                                                        <strong>Pro Tip:</strong> If a session ends in loss, stop trading and resume after 4 hours to avoid revenge trading.
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
-                                        <div style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '12px' }}>
-                                            Capital: ${plan.capital} | Goal: +{plan.target}%
-                                        </div>
-                                        <div style={{ height: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', overflow: 'hidden', marginBottom: '16px' }}>
-                                            <div style={{ width: `${plan.progress}%`, height: '100%', background: '#38bdf8' }}></div>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <span className="status" style={{ background: 'rgba(74, 222, 128, 0.1)', color: '#4ade80' }}>
-                                                {plan.status}
-                                            </span>
-                                            <span style={{ fontSize: '13px', fontWeight: '600' }}>{plan.progress}%</span>
-                                        </div>
-                                    </div>
-                                ))
+                                    );
+                                })
                             )}
                         </div>
                     </div>

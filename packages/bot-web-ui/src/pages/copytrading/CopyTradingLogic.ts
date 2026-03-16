@@ -31,10 +31,8 @@ class CopyTradingLogic {
             loginid: trader_login_id,
         };
 
-        if (options.assets && options.assets.length > 0) request.assets = options.assets;
         if (options.max_trade_stake) request.max_trade_stake = Number(options.max_trade_stake);
         if (options.min_trade_stake) request.min_trade_stake = Number(options.min_trade_stake);
-        if (options.trade_types && options.trade_types.length > 0) request.trade_types = options.trade_types;
 
         console.log('[CopyTrading] Starting copy with request:', request);
 
