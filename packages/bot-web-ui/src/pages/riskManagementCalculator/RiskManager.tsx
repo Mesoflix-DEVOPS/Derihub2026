@@ -3,16 +3,17 @@ import { FaShieldAlt, FaCalculator, FaBook, FaPlus, FaTrash, FaCheckCircle, FaEx
 import { observer } from 'mobx-react-lite';
 import { reaction } from 'mobx';
 import { useStore } from '@deriv/stores';
+import { useDBotStore } from 'Stores/useDBotStore';
 import styles from './risk-manager.scss';
 
 const useTradeActivity = (onTargetMet: (type: 'TP' | 'SL', profit: number) => void) => {
-    const { summary_card } = useStore();
+    const { summary_card } = useDBotStore();
 
     useEffect(() => {
         const dispose = reaction(
-            () => summary_card.profit_loss,
+            () => summary_card?.profit_loss,
             (profit: number) => {
-                if (profit === undefined) return;
+                if (profit === undefined || profit === null) return;
 
                 // Logic to check against active plans
                 // For demonstration, we'll check if profit > 10 or profit < -5
