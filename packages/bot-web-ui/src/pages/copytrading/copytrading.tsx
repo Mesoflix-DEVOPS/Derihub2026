@@ -200,16 +200,6 @@ const TokenManager: React.FC = observer(() => {
     const handleBecomeTrader = async (useToken = false) => {
         let res;
         setIsProcessing(true);
-        const profileData = {
-            account_opening_reason: traderSettings?.account_opening_reason || 'Speculative',
-            address_city: traderSettings?.address_city || 'Update Required',
-            address_line_1: traderSettings?.address_line_1 || 'Update Required',
-            address_postcode: traderSettings?.address_postcode || '000000',
-            phone: traderSettings?.phone || '00000000',
-            place_of_birth: traderSettings?.place_of_birth || 'ar',
-            tax_identification_number: traderSettings?.tax_identification_number || '000000',
-            tax_residence: traderSettings?.tax_residence || 'hk',
-        };
 
         try {
             if (useToken) {
