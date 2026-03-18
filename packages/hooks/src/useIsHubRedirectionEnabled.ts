@@ -17,7 +17,7 @@ const useIsHubRedirectionEnabled = () => {
 
     const cookieCountry = JSON.parse(Cookies.get('client_information') || '{}')?.residence;
 
-    const userCountry = cookieCountry || account_settings.country_code;
+    const userCountry = cookieCountry || account_settings?.country_code;
 
     const isHubRedirectionEnabled =
         typeof hubEnabledCountryList === 'object' &&
