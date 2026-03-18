@@ -49,7 +49,7 @@ const AppContent: React.FC<{ passthrough: unknown }> = observer(({ passthrough }
         setIsCountryCodeDropdownEnabled,
         accounts,
     } = store.client;
-    const { first_name, last_name } = account_settings;
+    const { first_name, last_name } = account_settings || {};
     const { current_language, changeSelectedLanguage } = store.common;
     const { is_dark_mode_on, setDarkMode } = store.ui;
 

@@ -1213,7 +1213,7 @@ export default class ClientStore extends BaseStore {
         const email = this.email || client_accounts[loginid]?.email;
         const residence = this.residence || client_accounts[loginid]?.residence;
 
-        const { first_name, last_name, name } = account_settings;
+        const { first_name, last_name, name } = account_settings || {};
         if (loginid && email) {
             const client_information = {
                 loginid,
