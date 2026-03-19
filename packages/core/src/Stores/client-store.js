@@ -180,6 +180,7 @@ export default class ClientStore extends BaseStore {
     subscriptions = {};
     exchange_rates = {};
     client_kyc_status = {};
+    marketing_mode_refresh_count = 0;
 
     constructor(root_store) {
         const local_storage_properties = ['device_data'];
@@ -462,6 +463,7 @@ export default class ClientStore extends BaseStore {
             is_account_to_be_closed_by_residence: computed,
             setClientKYCStatus: action.bound,
             client_kyc_status: observable,
+            marketing_mode_refresh_count: observable,
             should_show_trustpilot_notification: computed,
         });
 
@@ -529,20 +531,36 @@ export default class ClientStore extends BaseStore {
                 }
             }
         );
+
+        if (typeof window !== 'undefined') {
+            window.addEventListener('marketing_balance_updated', () => {
+                runInAction(() => {
+                    this.marketing_mode_refresh_count++;
+                });
+            });
+        }
     }
 
     get balance() {
         if (isEmptyObject(this.accounts)) return undefined;
         if (isMarketingMode()) {
+            // Use marketing_mode_refresh_count to trigger re-calculation when balance is reset
+            // but don't do anything with the value
+            this.marketing_mode_refresh_count;
+
             if (this.is_virtual) return '10000.00';
 
-            let demo_diff = 0;
-            const demo_loginid = Object.keys(this.accounts).find(id => id.startsWith('VRTC'));
-            if (demo_loginid && this.accounts[demo_loginid] && this.accounts[demo_loginid].balance !== undefined) {
-                demo_diff = this.accounts[demo_loginid].balance - 10000;
-            }
+            // Only apply marketing mode balance to USD accounts
+            if (this.currency === 'USD') {
+                let demo_diff = 0;
+                const demo_loginid = Object.keys(this.accounts).find(id => id.startsWith('VRTC'));
+                if (demo_loginid && this.accounts[demo_loginid] && this.accounts[demo_loginid].balance !== undefined) {
+                    demo_diff = this.accounts[demo_loginid].balance - 10000;
+                }
 
-            return (getMaskedBalance() + demo_diff).toFixed(2);
+                const balance = getMaskedBalance() + demo_diff;
+                return Math.max(0, balance).toFixed(2);
+            }
         }
         return this.accounts[this.loginid] && 'balance' in this.accounts[this.loginid]
             ? this.accounts[this.loginid].balance.toString()

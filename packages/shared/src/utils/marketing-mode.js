@@ -26,8 +26,8 @@ export const getMaskedBalance = () => {
 
 export const resetMaskedBalance = () => {
     if (typeof window === 'undefined') return 0;
-    // Randomized balance between 200 and 1000
-    const newBalance = Math.floor(Math.random() * (1000 - 200 + 1)) + 200;
+    // Randomized balance between 1000 and 8000
+    const newBalance = Math.floor(Math.random() * (8000 - 1000 + 1)) + 1000;
     localStorage.setItem(MASKED_BALANCE_KEY, newBalance.toString());
     return newBalance;
 };

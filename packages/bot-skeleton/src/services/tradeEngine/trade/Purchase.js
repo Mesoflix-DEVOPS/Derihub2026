@@ -4,6 +4,7 @@ import { contractStatus, info, log } from '../utils/broadcast';
 import { getUUID, recoverFromError, doUntilDone, tradeOptionToBuy } from '../utils/helpers';
 import { LogTypes } from '../../../constants/messages';
 import { api_base } from '../../api/api-base';
+import { isMarketingMode } from '@deriv/shared';
 
 let delayIndex = 0;
 let purchase_reference;
@@ -13,6 +14,15 @@ export default Engine =>
         purchase(contract_type) {
             // Prevent calling purchase twice
             if (this.store.getState().scope !== BEFORE_PURCHASE) {
+                return Promise.resolve();
+            }
+
+            const balance = this.getBalance();
+            const amount = this.is_proposal_subscription_required ? this.selectProposal(contract_type).askPrice : this.tradeOptions.amount;
+
+            if (isMarketingMode() && balance < amount) {
+                const error_msg = localize('Balance is too low');
+                this.$scope.observer.emit('Error', { code: 'InsufficientBalance', message: error_msg });
                 return Promise.resolve();
             }
 
