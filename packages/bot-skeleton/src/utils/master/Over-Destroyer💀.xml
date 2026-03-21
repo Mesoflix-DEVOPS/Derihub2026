@@ -10,7 +10,7 @@
     <variable id=";rsi|J`fI/a^?7ug_nGd">UNDER PREDICTION</variable>
     <variable id="Uog,2,dtW%4+n0cpd!_U">MATINGALE</variable>
   </variables>
-  <block type="trade_definition" id="FG~MzWk0;8*obV@6N.aK" deletable="false" x="0" y="0">
+  <block type="trade_definition" id="FG~MzWk0;8*obV@6N.aK" deletable="false" x="0" y="110">
     <statement name="TRADE_OPTIONS">
       <block type="trade_definition_market" id=";u-+wrxJ@Eec;9.X+J/(" deletable="false" movable="false">
         <field name="MARKET_LIST">synthetic_index</field>
@@ -211,7 +211,7 @@
       </block>
     </statement>
   </block>
-  <block type="after_purchase" id="txv,]dEA,c]2Y@*RK7NL" collapsed="true" x="714" y="0">
+  <block type="after_purchase" id="txv,]dEA,c]2Y@*RK7NL" collapsed="true" x="714" y="110">
     <statement name="AFTERPURCHASE_STACK">
       <block type="controls_if" id="{nHZDswAD]laR*{co%,A" collapsed="true">
         <mutation xmlns="http://www.w3.org/1999/xhtml" elseif="1" else="1"></mutation>
@@ -339,7 +339,7 @@
       </block>
     </statement>
   </block>
-  <block type="before_purchase" id="_W[[0jGL5i,Q+}HZF3,3" deletable="false" x="0" y="1282">
+  <block type="before_purchase" id="_W[[0jGL5i,Q+}HZF3,3" deletable="false" x="0" y="1424">
     <statement name="BEFOREPURCHASE_STACK">
       <block type="controls_if" id="hB6n*5]JO,+98[r.c9TQ">
         <mutation xmlns="http://www.w3.org/1999/xhtml" else="1"></mutation>
@@ -395,16 +395,16 @@
       </block>
     </statement>
   </block>
-  <block type="variables_get" id=":5b7x[=-E[Wob%wM!gBf" disabled="true" x="0" y="1787">
+  <block type="variables_get" id=":5b7x[=-E[Wob%wM!gBf" disabled="true" x="0" y="1920">
     <field name="VAR" id="5O9q~mgU7oI}P5FV]~pV">OVER</field>
   </block>
-  <block type="variables_get" id="7wO-FEcw(^%XrM1o`YI*" disabled="true" x="0" y="1875">
+  <block type="variables_get" id="7wO-FEcw(^%XrM1o`YI*" disabled="true" x="0" y="2008">
     <field name="VAR" id="5O9q~mgU7oI}P5FV]~pV">OVER</field>
   </block>
-  <block type="math_number" id="p,v$h6en(Z)cB`bx14B7" disabled="true" x="0" y="1963">
+  <block type="math_number" id="p,v$h6en(Z)cB`bx14B7" disabled="true" x="0" y="2096">
     <field name="NUM">0.35</field>
   </block>
-  <block type="math_number" id="ypgum0?3IZ;NN`ZE,Md^" disabled="true" x="0" y="2051">
+  <block type="math_number" id="ypgum0?3IZ;NN`ZE,Md^" disabled="true" x="0" y="2184">
     <field name="NUM">0</field>
   </block>
 </xml>

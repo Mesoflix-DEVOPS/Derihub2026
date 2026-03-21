@@ -82,30 +82,30 @@
 
             &__active {
                 position: relative;
-                // === GOLDEN GLASSMORPHIC ACTIVE STATE ===
+                // === BLUE GLASSMORPHIC ACTIVE STATE ===
                 background: linear-gradient(135deg,
-                        rgba(212, 175, 55, 0.35) 0%,
-                        rgba(255, 215, 0, 0.25) 50%,
-                        rgba(184, 134, 11, 0.35) 100%) !important;
+                        rgba(37, 99, 235, 0.35) 0%,
+                        rgba(59, 130, 246, 0.25) 50%,
+                        rgba(29, 78, 216, 0.35) 100%) !important;
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
-                color: #1a1a1a !important;
+                color: #ffffff !important;
                 font-weight: 700;
                 transform: translateY(-1px);
-                box-shadow: 0 0 16px rgba(212, 175, 55, 0.5), 0 4px 12px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 0 16px rgba(37, 99, 235, 0.5), 0 4px 12px rgba(0, 0, 0, 0.15);
                 transition: all 0.3s ease;
-                border: 1.5px solid rgba(212, 175, 55, 0.85) !important;
+                border: 1.5px solid rgba(37, 99, 235, 0.85) !important;
                 border-bottom-color: transparent !important;
 
-                // Dark mode - even more brilliant gold
+                // Dark mode - even more brilliant blue
                 .theme--dark & {
                     background: linear-gradient(135deg,
-                            rgba(212, 175, 55, 0.45) 0%,
-                            rgba(255, 215, 0, 0.35) 50%,
-                            rgba(184, 134, 11, 0.45) 100%) !important;
-                    color: #fff8e1 !important;
-                    border-color: rgba(255, 215, 0, 0.9) !important;
-                    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 4px 14px rgba(0, 0, 0, 0.25);
+                            rgba(37, 99, 235, 0.45) 0%,
+                            rgba(59, 130, 246, 0.35) 50%,
+                            rgba(29, 78, 216, 0.45) 100%) !important;
+                    color: #e0f2fe !important;
+                    border-color: rgba(59, 130, 246, 0.9) !important;
+                    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 4px 14px rgba(0, 0, 0, 0.25);
                 }
 
                 &::after {
@@ -115,37 +115,37 @@
                     left: 15%;
                     width: 70%;
                     height: 2px;
-                    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 1), transparent);
+                    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 1), transparent);
                     border-radius: 2px;
                     transform: none;
                 }
 
                 svg {
                     fill: currentColor;
-                    filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.6));
+                    filter: drop-shadow(0 0 3px rgba(37, 99, 235, 0.6));
                 }
             }
 
 
             &__list {
                 position: relative;
-                // Golden glassmorphic tab bar
-                background: rgba(240, 220, 150, 0.08);
+                // Blue glassmorphic tab bar
+                background: rgba(37, 99, 235, 0.08);
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
                 justify-content: flex-start !important;
                 margin-left: 0;
                 padding: 4px 10px;
                 border-radius: 10px;
-                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 215, 0, 0.1);
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(59, 130, 246, 0.1);
                 gap: 3px;
                 /* Tighter spacing between tabs */
-                border-bottom: 1.5px solid rgba(212, 175, 55, 0.25);
+                border-bottom: 1.5px solid rgba(37, 99, 235, 0.25);
 
                 .theme--dark & {
-                    background: rgba(20, 15, 5, 0.35);
-                    border-bottom-color: rgba(212, 175, 55, 0.35);
-                    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 215, 0, 0.12);
+                    background: rgba(5, 10, 30, 0.35);
+                    border-bottom-color: rgba(37, 99, 235, 0.35);
+                    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(59, 130, 246, 0.12);
                 }
 
                 &::after {
@@ -240,8 +240,8 @@
             }
 
             &__item {
-                // === GOLDEN GLASSMORPHIC INACTIVE TABS ===
-                color: #5a4a1a;
+                // === BLUE GLASSMORPHIC INACTIVE TABS ===
+                color: #1e3a8a;
                 font-weight: 600;
                 font-size: 1.35rem;
                 letter-spacing: 0.01em;
@@ -257,47 +257,47 @@
                 align-items: center;
                 justify-content: center;
                 background: linear-gradient(135deg,
-                        rgba(255, 250, 220, 0.7) 0%,
-                        rgba(240, 220, 150, 0.5) 100%);
+                        rgba(239, 246, 255, 0.7) 0%,
+                        rgba(191, 219, 254, 0.5) 100%);
                 backdrop-filter: blur(6px);
                 -webkit-backdrop-filter: blur(6px);
                 box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08),
                     inset 0 1px 0 rgba(255, 255, 255, 0.5);
                 cursor: pointer;
                 overflow: hidden;
-                border: 1px solid rgba(212, 175, 55, 0.35);
+                border: 1px solid rgba(37, 99, 235, 0.35);
 
-                // Dark mode inverted - rich dark gold glass
+                // Dark mode inverted - rich dark blue glass
                 .theme--dark & {
-                    color: rgba(255, 220, 100, 0.9);
+                    color: rgba(191, 219, 254, 0.9);
                     background: linear-gradient(135deg,
-                            rgba(30, 22, 5, 0.75) 0%,
-                            rgba(50, 38, 10, 0.65) 100%);
-                    border-color: rgba(212, 175, 55, 0.4);
+                            rgba(15, 23, 42, 0.75) 0%,
+                            rgba(30, 41, 59, 0.65) 100%);
+                    border-color: rgba(37, 99, 235, 0.4);
                     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2),
-                        inset 0 1px 0 rgba(255, 200, 50, 0.12);
+                        inset 0 1px 0 rgba(147, 197, 253, 0.12);
                 }
 
                 &:hover {
-                    color: #7a5800;
+                    color: #1d4ed8;
                     background: linear-gradient(135deg,
-                            rgba(255, 240, 180, 0.9) 0%,
-                            rgba(255, 215, 50, 0.6) 100%);
-                    border-color: rgba(212, 175, 55, 0.7);
+                            rgba(219, 234, 254, 0.9) 0%,
+                            rgba(147, 197, 253, 0.6) 100%);
+                    border-color: rgba(37, 99, 235, 0.7);
                     transform: translateY(-1px);
-                    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3), 0 2px 6px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3), 0 2px 6px rgba(0, 0, 0, 0.1);
 
                     .theme--dark & {
-                        color: #ffe082;
+                        color: #93c5fd;
                         background: linear-gradient(135deg,
-                                rgba(50, 38, 10, 0.9) 0%,
-                                rgba(80, 60, 10, 0.8) 100%);
-                        border-color: rgba(255, 215, 0, 0.65);
-                        box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35), 0 2px 6px rgba(0, 0, 0, 0.2);
+                                rgba(30, 41, 59, 0.9) 0%,
+                                rgba(51, 65, 85, 0.8) 100%);
+                        border-color: rgba(59, 130, 246, 0.65);
+                        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35), 0 2px 6px rgba(0, 0, 0, 0.2);
                     }
                 }
 
-                // Gold shimmer on hover
+                // Blue shimmer on hover
                 &::before {
                     content: '';
                     position: absolute;
@@ -307,7 +307,7 @@
                     height: 100%;
                     background: linear-gradient(90deg,
                             transparent,
-                            rgba(255, 215, 0, 0.2),
+                            rgba(59, 130, 246, 0.2),
                             transparent);
                     transition: left 0.5s ease;
                 }

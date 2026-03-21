@@ -52,56 +52,56 @@ const RecentWorkspace = observer(({ workspace, index }: { workspace: TRecentStra
     };
 
     return (
-        <div className='dbot-gold-card'>
+        <div className='dbot-blue-card'>
             {/* Animated background circuit lines */}
-            <div className='dbot-gold-card__circuits'>
+            <div className='dbot-blue-card__circuits'>
                 {Array.from({ length: 6 }).map((_, i) => <span key={i} />)}
             </div>
 
-            {/* Floating gold particles */}
-            <div className='dbot-gold-card__particles'>
+            {/* Floating blue particles */}
+            <div className='dbot-blue-card__particles'>
                 {Array.from({ length: 8 }).map((_, i) => <span key={i} />)}
             </div>
 
             {/* PREMIUM badge - top right */}
-            <div className='dbot-gold-card__premium'>★ PREMIUM</div>
+            <div className='dbot-blue-card__premium'>★ PREMIUM</div>
 
             {/* Header */}
-            <div className='dbot-gold-card__header'>
-                <div className='dbot-gold-card__icon'>⚡</div>
-                <div className='dbot-gold-card__meta'>
-                    <div className='dbot-gold-card__name'>{strategyNameRef.current}</div>
-                    <div className='dbot-gold-card__timeframe'>Timeframe: {timeframe}</div>
+            <div className='dbot-blue-card__header'>
+                <div className='dbot-blue-card__icon'>🔵</div>
+                <div className='dbot-blue-card__meta'>
+                    <div className='dbot-blue-card__name'>{strategyNameRef.current}</div>
+                    <div className='dbot-blue-card__timeframe'>Timeframe: {timeframe}</div>
                 </div>
             </div>
 
             {/* Description */}
-            <div className='dbot-gold-card__description'>
+            <div className='dbot-blue-card__description'>
                 {BOT_DESCRIPTIONS[index % BOT_DESCRIPTIONS.length]}
             </div>
 
             {/* Win Rate Meter */}
-            <div className='dbot-gold-card__stats'>
-                <div className='dbot-gold-card__stat-label'>
+            <div className='dbot-blue-card__stats'>
+                <div className='dbot-blue-card__stat-label'>
                     <span>Win Rate</span>
-                    <span className='dbot-gold-card__win-rate'>{winRate}%</span>
+                    <span className='dbot-blue-card__win-rate'>{winRate}%</span>
                 </div>
-                <div className='dbot-gold-card__meter'>
-                    <div className='dbot-gold-card__meter-fill' style={{ width: `${winRate}%` }}>
-                        <div className='dbot-gold-card__meter-shine' />
+                <div className='dbot-blue-card__meter'>
+                    <div className='dbot-blue-card__meter-fill' style={{ width: `${winRate}%` }}>
+                        <div className='dbot-blue-card__meter-shine' />
                     </div>
                 </div>
             </div>
 
             {/* Full-width Load Button */}
-            <button className='dbot-gold-card__load-btn' onClick={handleLoad}>
-                <span className='dbot-gold-card__load-icon'>🚀</span>
+            <button className='dbot-blue-card__load-btn' onClick={handleLoad}>
+                <span className='dbot-blue-card__load-icon'>🚀</span>
                 <span>Load Bot</span>
-                <span className='dbot-gold-card__load-arrow'>→</span>
+                <span className='dbot-blue-card__load-arrow'>→</span>
             </button>
 
-            {/* Gold shine sweep */}
-            <div className='dbot-gold-card__shine' />
+            {/* Blue shine sweep */}
+            <div className='dbot-blue-card__shine' />
         </div>
     );
 });
