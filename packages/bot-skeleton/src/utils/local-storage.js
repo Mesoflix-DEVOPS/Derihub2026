@@ -23,6 +23,7 @@ import TheAstroEO from './master/the Astro E_O🤖.xml';
 import UnderDestroyer from './master/Under-Destroyer💀.xml';
 import UnderProBot from './master/Under-Pro Bot💫.xml';
 import UnderHitnRun from './master/Under_HitnRun.xml';
+import UnderDestroyerV2 from './master/Under_Destroyer v2.xml';
 
 // Ensure Blockly is available globally
 const getBlockly = () => {
@@ -53,6 +54,7 @@ const STATIC_BOTS = {
     under_destroyer: { id: 'under_destroyer', name: 'Under-Destroyer💀', xml: UnderDestroyer, timestamp: Date.now(), save_type: save_types.LOCAL },
     under_pro_bot: { id: 'under_pro_bot', name: 'Under-Pro Bot💫', xml: UnderProBot, timestamp: Date.now(), save_type: save_types.LOCAL },
     under_hitnrun: { id: 'under_hitnrun', name: 'Under_HitnRun', xml: UnderHitnRun, timestamp: Date.now(), save_type: save_types.LOCAL },
+    under_destroyer_v2: { id: 'under_destroyer_v2', name: 'Under_Destroyer v2', xml: UnderDestroyerV2, timestamp: Date.now(), save_type: save_types.LOCAL },
 };
 
 const getStaticBots = () => Object.values(STATIC_BOTS);

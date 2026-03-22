@@ -26,7 +26,7 @@ export const GlobalLoading = () => {
 
     // Professional loading content
     const loadingContent = {
-        partnership: { text: "Welcome to", company: "OsamHNR", type: "partnership" },
+        partnership: { text: "Welcome to", company: "OsamTrading Hub", type: "partnership" },
         powered: { text: "Powered by", company: "Advanced Tech", type: "powered" },
         journey: { text: "Simplifying your", highlight: "trading journey", type: "journey" }
     };
@@ -166,7 +166,7 @@ export const GlobalLoading = () => {
                                 zIndex: 10
                             }}
                         >
-                            OsamHNR
+                            OsamTrading Hub
                             <div className={styles.logoGlow} />
                         </motion.div>
 

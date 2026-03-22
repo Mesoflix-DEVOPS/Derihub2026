@@ -24,7 +24,7 @@ const PlatformSwitcher = () => {
                 WebkitTextFillColor: 'transparent',
                 letterSpacing: '0.5px'
             }}>
-                {isMobile ? 'OH' : 'OSAMHNR'}
+                {isMobile ? 'Osam' : 'OsamTrading Hub'}
             </span>
         </div>
     );
