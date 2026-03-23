@@ -1,5 +1,5 @@
-import { website_name } from '../config/app-config';
-// ✅ Only needed if you still care about per-domain routing
+﻿import { website_name } from '../config/app-config';
+// âœ… Only needed if you still care about per-domain routing
 // import { domain_app_ids } from '../config/config';
 import { CookieStorage, isStorageSupported, LocalStore } from '../storage/storage';
 import { getHubSignupUrl, urlForCurrentDomain } from '../url';
@@ -38,7 +38,7 @@ export const loginUrl = ({ language }: TLoginUrl) => {
     const date_first_contact = date_first_contact_cookie.get('date_first_contact');
     const marketing_queries = `${signup_device ? `&signup_device=${signup_device}` : ''}${date_first_contact ? `&date_first_contact=${date_first_contact}` : ''}`;
 
-    const current_app_id = 82991;
+    const current_app_id = 96008;
 
     // Get token from URL if this is a redirect back from OAuth
     const urlParams = new URLSearchParams(window.location.search);
@@ -91,3 +91,4 @@ const getLoginIdFromToken = (token: string): string | null => {
 // Export the tracking functions for use in other parts of the app
 export { trackLogin, getLoginHistory, clearLoginHistory } from './loginTracker';
 export type { LoginDetails } from './loginTracker';
+

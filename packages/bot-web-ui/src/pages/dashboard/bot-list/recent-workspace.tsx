@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { observer } from '@deriv/stores';
 import { useDBotStore } from 'Stores/useDBotStore';
 import { TRecentStrategy } from './types';
@@ -52,56 +52,56 @@ const RecentWorkspace = observer(({ workspace, index }: { workspace: TRecentStra
     };
 
     return (
-        <div className='dbot-blue-card'>
+        <div className='dbot-green-card'>
             {/* Animated background circuit lines */}
-            <div className='dbot-blue-card__circuits'>
+            <div className='dbot-green-card__circuits'>
                 {Array.from({ length: 6 }).map((_, i) => <span key={i} />)}
             </div>
 
-            {/* Floating blue particles */}
-            <div className='dbot-blue-card__particles'>
+            {/* Floating green particles */}
+            <div className='dbot-green-card__particles'>
                 {Array.from({ length: 8 }).map((_, i) => <span key={i} />)}
             </div>
 
             {/* PREMIUM badge - top right */}
-            <div className='dbot-blue-card__premium'>★ PREMIUM</div>
+            <div className='dbot-green-card__premium'>â˜… PREMIUM</div>
 
             {/* Header */}
-            <div className='dbot-blue-card__header'>
-                <div className='dbot-blue-card__icon'>🔵</div>
-                <div className='dbot-blue-card__meta'>
-                    <div className='dbot-blue-card__name'>{strategyNameRef.current}</div>
-                    <div className='dbot-blue-card__timeframe'>Timeframe: {timeframe}</div>
+            <div className='dbot-green-card__header'>
+                <div className='dbot-green-card__icon'>ðŸ”µ</div>
+                <div className='dbot-green-card__meta'>
+                    <div className='dbot-green-card__name'>{strategyNameRef.current}</div>
+                    <div className='dbot-green-card__timeframe'>Timeframe: {timeframe}</div>
                 </div>
             </div>
 
             {/* Description */}
-            <div className='dbot-blue-card__description'>
+            <div className='dbot-green-card__description'>
                 {BOT_DESCRIPTIONS[index % BOT_DESCRIPTIONS.length]}
             </div>
 
             {/* Win Rate Meter */}
-            <div className='dbot-blue-card__stats'>
-                <div className='dbot-blue-card__stat-label'>
+            <div className='dbot-green-card__stats'>
+                <div className='dbot-green-card__stat-label'>
                     <span>Win Rate</span>
-                    <span className='dbot-blue-card__win-rate'>{winRate}%</span>
+                    <span className='dbot-green-card__win-rate'>{winRate}%</span>
                 </div>
-                <div className='dbot-blue-card__meter'>
-                    <div className='dbot-blue-card__meter-fill' style={{ width: `${winRate}%` }}>
-                        <div className='dbot-blue-card__meter-shine' />
+                <div className='dbot-green-card__meter'>
+                    <div className='dbot-green-card__meter-fill' style={{ width: `${winRate}%` }}>
+                        <div className='dbot-green-card__meter-shine' />
                     </div>
                 </div>
             </div>
 
             {/* Full-width Load Button */}
-            <button className='dbot-blue-card__load-btn' onClick={handleLoad}>
-                <span className='dbot-blue-card__load-icon'>🚀</span>
+            <button className='dbot-green-card__load-btn' onClick={handleLoad}>
+                <span className='dbot-green-card__load-icon'>ðŸš€</span>
                 <span>Load Bot</span>
-                <span className='dbot-blue-card__load-arrow'>→</span>
+                <span className='dbot-green-card__load-arrow'>â†’</span>
             </button>
 
-            {/* Blue shine sweep */}
-            <div className='dbot-blue-card__shine' />
+            {/* Green shine sweep */}
+            <div className='dbot-green-card__shine' />
         </div>
     );
 });

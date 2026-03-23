@@ -8,7 +8,7 @@
     <variable id="stTv+iCT2JsR7Y8Pv5+[">Expected Profit</variable>
     <variable id="_B;eUyd}!L.M}cVaI$Bd">text1</variable>
     <variable id="..BDjVe33NT$Ib:EM`9}">Win Amount</variable>
-    <variable id="$[Xb?-rJ[~`R{?AX_zt%">welcome to Osam TradingHub</variable>
+    <variable id="$[Xb?-rJ[~`R{?AX_zt%">welcome to DERIHUB</variable>
   </variables>
   <block type="trade_definition" id="L?i_Uk=Z#I^v||WWC^2o" deletable="false" x="0" y="110">
     <statement name="TRADE_OPTIONS">
@@ -464,7 +464,7 @@
                     </statement>
                     <statement name="ELSE">
                       <block type="text_join" id="1I-r(4}x!2n9qu2U[7l=">
-                        <field name="VARIABLE" id="$[Xb?-rJ[~`R{?AX_zt%">welcome to Osam TradingHub</field>
+                        <field name="VARIABLE" id="$[Xb?-rJ[~`R{?AX_zt%">welcome to  DERIHUB</field>
                         <statement name="STACK">
                           <block type="text_statement" id="WJU2S+0,)w,EXpG9L|N~">
                             <value name="TEXT">
@@ -494,7 +494,7 @@
                                 <field name="TEXT">abc</field>
                               </shadow>
                               <block type="variables_get" id="%Xvw,nsAH/(#H=g=9.a#">
-                                <field name="VAR" id="$[Xb?-rJ[~`R{?AX_zt%">welcome to Osam TradingHub</field>
+                                <field name="VAR" id="$[Xb?-rJ[~`R{?AX_zt%">welcome to DERIHUB</field>
                               </block>
                             </value>
                           </block>

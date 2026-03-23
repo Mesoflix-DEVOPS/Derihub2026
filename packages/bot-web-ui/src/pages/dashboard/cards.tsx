@@ -155,7 +155,7 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies, children }: TCard
                     {actions.map((action) => (
                         <div
                             key={action.type}
-                            className={classNames('dashboard-card dashboard-card--blue', {
+                            className={classNames('dashboard-card dashboard-card--green', {
                                 'dashboard-card--minimized': has_dashboard_strategies && is_mobile,
                             })}
                             onClick={action.callback}

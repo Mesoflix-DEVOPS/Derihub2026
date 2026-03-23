@@ -8,7 +8,7 @@ export type TSidebarItem = {
 
 export const SIDEBAR_INTRO: TSidebarItem[] = [
     {
-        label: localize('Welcome to OSAMHNR'),
+        label: localize('Welcome to Derihub'),
         content: [
             {
                 data: localize(
@@ -21,14 +21,14 @@ export const SIDEBAR_INTRO: TSidebarItem[] = [
     },
     {
         label: localize('Guide'),
-        content: [{ data: localize('OSAMHNR - your automated trading partner') }],
+        content: [{ data: localize('Derihub - your automated trading partner') }],
         link: true,
     },
     {
         label: localize('FAQs'),
         content: [
             {
-                data: localize('What is OSAMHNR?'),
+                data: localize('What is Derihub?'),
                 faq_id: 'faq-0',
             },
             {

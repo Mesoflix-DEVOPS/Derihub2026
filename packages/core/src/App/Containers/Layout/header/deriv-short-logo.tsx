@@ -8,12 +8,12 @@ const DerivShortLogo = () => {
             <span style={{
                 fontSize: '22px',
                 fontWeight: 'bold',
-                background: 'linear-gradient(45deg, #06D6A0, #3B82F6)',
+                background: 'linear-gradient(45deg, #06D6A0, #22C55E)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 letterSpacing: '0.5px'
             }}>
-                {isMobile ? 'Osam' : 'OsamTrading Hub'}
+                {isMobile ? 'DH' : 'Derihub'}
             </span>
         </div>
     );

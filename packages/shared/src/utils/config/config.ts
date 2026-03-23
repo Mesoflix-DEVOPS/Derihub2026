@@ -1,4 +1,4 @@
-import { isBot } from '../platform';
+﻿import { isBot } from '../platform';
 import { isStaging } from '../url/helpers';
 import { WebSocketUtils } from '@deriv-com/utils';
 
@@ -16,23 +16,23 @@ export const livechat_license_id = 12049137;
 export const livechat_client_id = '66aa088aad5a414484c1fd1fa8a5ace7';
 
 export const domain_app_ids = {
-    'smarttraderstool.com': 82991,
-    'deriv.app': 82991,
-    'app.deriv.com': 82991,
-    'staging-app.deriv.com': 82991,
-    'app.deriv.me': 82991,
-    'staging-app.deriv.me': 82991,
-    'app.deriv.be': 82991,
-    'staging-app.deriv.be': 82991,
-    'binary.com': 82991,
-    'test-app.deriv.com': 82991,
-    'royal-app-seven.vercel.app': 82991,
-    'star-eight-ruby.vercel.app': 82991,
-    'goon-puce.vercel.app': 82991,
+    'smarttraderstool.com': 96008,
+    'deriv.app': 96008,
+    'app.deriv.com': 96008,
+    'staging-app.deriv.com': 96008,
+    'app.deriv.me': 96008,
+    'staging-app.deriv.me': 96008,
+    'app.deriv.be': 96008,
+    'staging-app.deriv.be': 96008,
+    'binary.com': 96008,
+    'test-app.deriv.com': 96008,
+    'royal-app-seven.vercel.app': 96008,
+    'star-eight-ruby.vercel.app': 96008,
+    'goon-puce.vercel.app': 96008,
 };
 
 export const platform_app_ids = {
-    derivgo: 82991,
+    derivgo: 96008,
 };
 
 export const getCurrentProductionDomain = () =>
@@ -52,7 +52,7 @@ export const isLocal = () => /localhost(:\d+)?$/i.test(window.location.hostname)
  */
 export const getAppId = () => {
     let app_id = null;
-    const user_app_id = '82991';
+    const user_app_id = '96008';
     const config_app_id = window.localStorage.getItem('config.app_id');
     const current_domain = getCurrentProductionDomain() || '';
     window.localStorage.removeItem('config.platform');
@@ -68,18 +68,18 @@ export const getAppId = () => {
         app_id = user_app_id;
     } else if (isStaging()) {
         window.localStorage.removeItem('config.default_app_id');
-        app_id = is_bot ? 82991 : domain_app_ids[current_domain as keyof typeof domain_app_ids] || 82991;
+        app_id = is_bot ? 96008 : domain_app_ids[current_domain as keyof typeof domain_app_ids] || 96008;
     } else if (/localhost/i.test(window.location.hostname)) {
-        app_id = 82991;
+        app_id = 96008;
     } else {
         window.localStorage.removeItem('config.default_app_id');
-        app_id = is_bot ? 82991 : domain_app_ids[current_domain as keyof typeof domain_app_ids] || 82991;
+        app_id = is_bot ? 96008 : domain_app_ids[current_domain as keyof typeof domain_app_ids] || 96008;
     }
 
     return app_id;
 };
 
-// ✅ UPDATED TO USE CORRECT WEBSOCKET BASE ENDPOINT
+// âœ… UPDATED TO USE CORRECT WEBSOCKET BASE ENDPOINT
 export const getSocketURL = () => {
     const local_storage_server_url = window.localStorage.getItem('config.server_url');
     if (local_storage_server_url) return local_storage_server_url;
@@ -102,7 +102,7 @@ export const checkAndSetEndpointFromUrl = () => {
             // Only set valid WebSocket URL
             if (/^(^(www\.)?qa[0-9]{1,4}\.deriv\.dev|(.*)\.derivws\.com)$/.test(qa_server) && /^[0-9]+$/.test(app_id)) {
                 localStorage.setItem('config.app_id', app_id);
-                // ✅ ONLY set host, NOT full URL
+                // âœ… ONLY set host, NOT full URL
                 localStorage.setItem('config.server_url', `wss://${qa_server}/websockets/v3?app_id=${app_id}`);
             }
 
@@ -123,3 +123,4 @@ export const getDebugServiceWorker = () => {
     if (debug_service_worker_flag) return !!parseInt(debug_service_worker_flag);
     return false;
 };
+

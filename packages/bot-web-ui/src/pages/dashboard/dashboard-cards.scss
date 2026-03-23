@@ -42,7 +42,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow:
-        0 4px 12px rgba(37, 99, 235, 0.15),
+        0 4px 12px rgba(22, 163, 74, 0.15),
         inset 0 0 0 1px rgba(255, 255, 255, 0.1);
     /* Inner glow for dark mode */
     min-height: 100px;
@@ -50,10 +50,10 @@
 
     /* Force the border to be visible in both themes */
     @media (prefers-color-scheme: dark) {
-        border-color: #3B82F6;
+        border-color: #22C55E;
         /* Slightly brighter in dark mode */
         box-shadow:
-            0 4px 16px rgba(59, 130, 246, 0.2),
+            0 4px 16px rgba(34, 197, 94, 0.2),
             inset 0 0 0 1px rgba(255, 255, 255, 0.15);
     }
 
@@ -67,7 +67,7 @@
         border-color: #60A5FA;
         /* Even brighter on hover */
         box-shadow:
-            0 6px 20px rgba(37, 99, 235, 0.25),
+            0 6px 20px rgba(22, 163, 74, 0.25),
             inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 
         /* Enhanced hover in dark mode */
@@ -127,38 +127,38 @@
     }
 
     &--blue {
-        background: rgba(37, 99, 235, 0.08);
-        /* Dark subtle blue */
+        background: rgba(22, 163, 74, 0.08);
+        /* Dark subtle green */
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(37, 99, 235, 0.3);
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+        border: 1px solid rgba(22, 163, 74, 0.3);
+        box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1);
 
         @media (prefers-color-scheme: dark) {
-            border-color: rgba(59, 130, 246, 0.4);
-            /* Brighter blue in dark mode */
-            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
+            border-color: rgba(34, 197, 94, 0.4);
+            /* Brighter green in dark mode */
+            box-shadow: 0 4px 16px rgba(34, 197, 94, 0.15);
         }
 
         &:hover {
-            border-color: rgba(59, 130, 246, 0.7);
-            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+            border-color: rgba(34, 197, 94, 0.7);
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.25);
             transform: translateY(-4px);
 
             @media (prefers-color-scheme: dark) {
-                border-color: rgba(59, 130, 246, 0.9);
-                box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+                border-color: rgba(34, 197, 94, 0.9);
+                box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
             }
         }
 
         .dashboard-card__icon {
-            background: rgba(37, 99, 235, 0.15);
-            filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.4));
+            background: rgba(22, 163, 74, 0.15);
+            filter: drop-shadow(0 0 6px rgba(22, 163, 74, 0.4));
 
             .dc-icon,
             svg {
-                color: #3b82f6;
-                /* Tailwind blue-500 */
+                color: #22c55e;
+                /* Tailwind green-500 */
             }
         }
     }
