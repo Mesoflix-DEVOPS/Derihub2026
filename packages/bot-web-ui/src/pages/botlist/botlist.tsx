@@ -5,6 +5,7 @@ import { observer, useStore } from '@deriv/stores';
 import { Localize } from '@deriv/translations';
 import { useDBotStore } from 'Stores/useDBotStore';
 import RecentWorkspace from '../dashboard/bot-list/recent-workspace';
+import PremiumBotCard from './premium-bot-card';
 import styles from './botlist.module.scss';
 
 const DashboardBotList = observer(() => {
@@ -93,6 +94,19 @@ const DashboardBotList = observer(() => {
                         <>
                             {filteredBots?.length > 0 ? (
                                 <div className={styles.grid}>
+                                    <PremiumBotCard
+                                        name="Candle Chart AI v2"
+                                        description="Advanced Candle Chart AI with machine learning for high precision price action trading."
+                                        price_usd="1000usd"
+                                        price_ksh="ksh 130,800"
+                                        is_v2
+                                    />
+                                    <PremiumBotCard
+                                        name="Candle Chart AI v1"
+                                        description="Powerful Candle Chart AI v1 for reliable trend identification and entry signals."
+                                        price_usd="650usd"
+                                        price_ksh="ksh 84,500"
+                                    />
                                     {filteredBots.map((workspace: any, index: number) => (
                                         <RecentWorkspace
                                             key={workspace.id}
