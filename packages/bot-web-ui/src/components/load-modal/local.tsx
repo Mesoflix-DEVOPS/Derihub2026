@@ -43,6 +43,11 @@ const LocalComponent = observer(() => {
                     <div className='load-strategy__title'>
                         <Localize i18n_default_text='Preview' />
                     </div>
+                    {!is_desktop && (
+                        <div className='load-strategy__local-footer'>
+                            <LocalFooter />
+                        </div>
+                    )}
                     <div className='load-strategy__preview-workspace'>
                         <div id='load-strategy__blockly-container' style={{ height: '100%' }}>
                             <div className='load-strategy__local-preview-close'>
@@ -56,11 +61,6 @@ const LocalComponent = observer(() => {
                         </div>
                     </div>
                 </div>
-                {!is_desktop && (
-                    <div className='load-strategy__local-footer'>
-                        <LocalFooter />
-                    </div>
-                )}
             </div>
         );
     }

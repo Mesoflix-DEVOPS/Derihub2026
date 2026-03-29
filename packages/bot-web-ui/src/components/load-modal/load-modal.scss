@@ -158,11 +158,60 @@
         &__title {
             margin: 1.5rem;
         }
+
+        &__local-footer {
+            @media (max-width: 991px) {
+                padding: 1.6rem;
+                border-bottom: 1px solid var(--border-divider);
+                margin-bottom: 0.8rem;
+                background: var(--general-main-1);
+                position: sticky;
+                top: 0;
+                z-index: 10;
+
+                .dc-button-group {
+                    display: flex;
+                    gap: 0.8rem;
+                    width: 100%;
+
+                    .dc-button {
+                        flex: 1;
+                        margin: 0;
+                    }
+                }
+            }
+        }
     }
 
     .load-strategy__preview-workspace {
         min-height: unset;
         height: unset;
         margin: 0;
+
+        @media (max-width: 991px) {
+            height: 400px;
+            width: 100%;
+            border: 1px solid var(--border-divider);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .load-strategy {
+            &__container {
+                &--has-footer {
+                    height: calc(100vh - 16rem);
+                    margin-top: 0;
+                    overflow-y: auto;
+                }
+            }
+
+            &__local-preview {
+                width: 100%;
+                flex-basis: 100%;
+                padding: 0 1.6rem 1.6rem;
+            }
+        }
     }
 }
