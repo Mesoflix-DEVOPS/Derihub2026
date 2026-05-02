@@ -11,6 +11,8 @@ import MasterPlugBotV1 from './master/MASTER PLUG BOT V1.xml';
 import MasterPlugBotV2 from './master/MASTER PLUG BOT V2(1) (7).xml';
 import OverAIPro from './master/Over AI pro.xml';
 import OverKing from './master/OverKing.xml';
+import OverProBot from './master/OverProBot.xml';
+
 
 // Ensure Blockly is available globally
 const getBlockly = () => {
@@ -29,6 +31,7 @@ const STATIC_BOTS = {
     master_plug_bot_v2: { id: 'master_plug_bot_v2', name: 'MASTER PLUG BOT V2', xml: MasterPlugBotV2, timestamp: Date.now(), save_type: save_types.LOCAL },
     over_ai_pro: { id: 'over_ai_pro', name: 'Over AI Pro', xml: OverAIPro, timestamp: Date.now(), save_type: save_types.LOCAL },
     over_king: { id: 'over_king', name: 'OverKing', xml: OverKing, timestamp: Date.now(), save_type: save_types.LOCAL },
+    over_pro_bot: { id: 'over_pro_bot', name: 'Over-Pro Bot', xml: OverProBot, timestamp: Date.now(), save_type: save_types.LOCAL },
 };
 
 const getStaticBots = () => Object.values(STATIC_BOTS);
